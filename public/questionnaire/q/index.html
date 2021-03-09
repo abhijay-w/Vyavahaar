@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <title> questionnair</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+</head>
+<style>
+    body {
+        font-family: 'Nunito', sans-serif;
+        margin: 0;
+    }
+
+    .nav {
+        background-color: #761678;
+        height: 60px;
+        width: 100%;
+        color: white;
+    }
+
+    .cont {
+        margin-right: 8%;
+        margin-left: 8%;
+        margin-top: 6%;
+    }
+
+    .ques {
+        background-color: #761678;
+        color: white;
+        font-size: 35px;
+        height: 80px;
+        padding-right: 15px;
+        padding-left: 15px;
+        padding-top: 5px;
+        border-radius: 16px;
+
+    }
+
+    .opttxt {
+        color: #761678;
+        font-size: 25px;
+        padding-top: 5px;
+        margin: 8px;
+
+    }
+</style>
+
+<body>
+    <div class="nav">
+        <p style="padding: 5px; font-size: 20px; color:white; float: right; font-weight: 500;"
+            onclick="document.location='/'"> home </p>
+    </div>
+    <div class="cont">
+        <div class="ques"> How often have you been bothered by not being able to stop or control worrying? </div>
+        <div class="opttxt">
+            <input type="radio" id="not at all" name="gender" value="0">
+            <label for="male">Not at all</label><br>
+            <input type="radio" id="often" name="gender" value="0.75">
+            <label for="female">Often</label><br>
+            <input type="radio" id="always" name="gender" value="1">
+            <label for="other">Always</label>
+        </div>
+    </div>
+</body>
+
+</html>
