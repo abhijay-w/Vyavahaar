@@ -73,3 +73,9 @@ async def getVent():
     async with aiofiles.open("public/vent/index.html", mode="r") as f:
         data = await f.read()
     return data
+
+@app.get("/gethelp", response_class=HTMLResponse)
+async def gethelp():
+    async with aiofiles.open("public\counsellor\index.html", mode="r") as f:
+        data = await f.read()
+    return data
