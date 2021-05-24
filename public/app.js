@@ -168,7 +168,7 @@ function signIn(){
     }else{
         firebase.auth().signInWithEmailAndPassword(userSIEmail, userSIPassword).then((success) => {
             
-            window.location.replace("home.html");
+            window.location.replace("index.html");
                 
         }).catch((error) => {
             // Handle Errors here.
@@ -289,5 +289,41 @@ function signOut(){
             title: 'Error',
             text: "error",
         })
+    });
+}
+function checksigninforques(){   
+    firebase.auth().onAuthStateChanged(function(user) {
+        window.user = user; // user is undefined if no user signed in
+        if(user == undefined){
+            alert("Please login first");
+            console.log("Please login first");
+        }
+        else{
+            document.location='questionnaire/index.html';
+        }
+    });
+}
+function checksigninforphoto(){   
+    firebase.auth().onAuthStateChanged(function(user) {
+        window.user = user; // user is undefined if no user signed in
+        if(user == undefined){
+            alert("Please login first");
+            console.log("Please login first");
+        }
+        else{
+            document.location='photo/index.html';
+        }
+    });
+}
+function checksigninforcoun(){   
+    firebase.auth().onAuthStateChanged(function(user) {
+        window.user = user; // user is undefined if no user signed in
+        if(user == undefined){
+            alert("Please login first");
+            console.log("Please login first");
+        }
+        else{
+            document.location='counsellor/index.html';
+        }
     });
 }
