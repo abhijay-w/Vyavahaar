@@ -1,99 +1,64 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title> ventout wall</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="static/vent/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Nunito:wght@300&display=swap" rel="stylesheet">
 </head>
-<style>
-    body {
-        font-family: 'Nunito', sans-serif;
-        margin: 0;
-    }
-
-    .nav {
-        background-color: #761678;
-        height: 60px;
-        width: 100%;
-        color: white;
-    }
-
-    .cont {
-        display: flex;
-        height: 700px;
-        margin-left: 8%;
-        margin-right: 4%;
-        margin-top: 5%;
-    }
-
-    .div-img {
-        width: 60%;
-        height: 700px;
-
-    }
-
-    .div-txt {
-        width: 50%;
-        height: 700px;
-
-    }
-
-    .ques-image {
-
-        display: block;
-        width: 800px;
-        margin: auto;
-        padding: 4%;
-    }
-
-    .txt {
-        font-size: 60px;
-        font-weight: 500;
-        color: #761678;
-        padding-left: 16px;
-        padding-top: 16px;
-    }
-
-    .txts {
-        font-size: 40px;
-        font-weight: 300;
-        color: #761678;
-        padding-left: 16px;
-        padding-top: 16px;
-    }
-
-    .but-style {
-        padding: 8px;
-        background-color: #761678;
-        border: none;
-        border-radius: 16px;
-        color: white;
-        font-weight: 500;
-        width: 250px;
-        height: 50px;
-        font-size: 25px;
-    }
-</style>
-<script>
-
-</script>
 
 <body>
-    <div class="nav">
-        <p style="padding: 5px; font-size: 20px; color:white; float: right; font-weight: 500;"
-            onclick="document.location='/'"> home </p>
-    </div>
-    <div class="cont">
-        <div class="div-txt">
-            <p class="txt"> Venting Wall </p>
-            <p class="txts">Tired of keeping your troubles to yourself. Shout it out to the world anonymously.<br><br>
-            </p>
-            <button class="but-style">Get Started</button>
+    <div id="myModal" class="modal">
+
+
+        <div class="modal-content">
+            <span class="close">&times;</span>
+
+            <textarea name="thought" id="modal-input" placeholder="Write anything you want..." cols="30" rows="10"></textarea>
+            <button id="modal-button" onclick="onSubmit(this)">Post</button>
         </div>
-        <div class="div-img">
-            <img class="ques-image" src="static/vent.jpg" alt="venting">
-        </div>
+
     </div>
+
+    <div class="heading">
+        <img src="/static/images/logo.jpeg" height="100" alt="">
+        <h1>Vent out your feelings </h1>
+    </div>
+
+    <a class="float" id="writebtn" onclick="displayInput()">
+        <i class="fas fa-pen my-float"></i>
+    </a>
+
+    <div class="row">
+        <div class="column" id="demo">
+
+        </div>
+        <div class="column form">
+            <img id="img2" src="static/vent/w.png" alt="Nunito">
+            <textarea name="thought" placeholder="Write anything you want..." class="descrip" cols="30" rows="10"></textarea>
+            <!-- <input type="text" name="thought" placeholder="" id=""> -->
+            <button id="postbutton" onclick="onSubmit(this)">Post</button>
+
+        </div>
+
+
+    </div>
+
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase.js"></script>
+    <script src="static/vent/app.js"></script>
+
 </body>
+
 
 </html>
