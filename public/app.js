@@ -299,7 +299,7 @@ function checksigninforques(){
             console.log("Please login first");
         }
         else{
-            document.location='questionnaire/index.html';
+            document.location='/questionnaire';
         }
     });
 }
@@ -311,7 +311,7 @@ function checksigninforphoto(){
             console.log("Please login first");
         }
         else{
-            document.location='photo/index.html';
+            document.location='/photo';
         }
     });
 }
@@ -323,7 +323,7 @@ function checksigninforcoun(){
             console.log("Please login first");
         }
         else{
-            document.location='counsellor/index.html';
+            document.location='/counsellor';
         }
     });
 }
