@@ -168,7 +168,7 @@ function signIn(){
     }else{
         firebase.auth().signInWithEmailAndPassword(userSIEmail, userSIPassword).then((success) => {
             
-            window.location.replace("index.html");
+            document.location='/';
                 
         }).catch((error) => {
             // Handle Errors here.
@@ -278,7 +278,7 @@ function signOut(){
             title: 'Signed Out', 
         }).then((value) => {
             setTimeout(function(){
-                window.location.replace("index.html");
+                document.location='/';
             }, 1000)
         });
     }).catch(function(error) {
