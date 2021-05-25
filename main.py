@@ -79,3 +79,9 @@ async def gethelp():
     async with aiofiles.open("public\counsellor\index.html", mode="r") as f:
         data = await f.read()
     return data
+
+@app.get("/about", response_class=HTMLResponse)
+async def gethelp():
+    async with aiofiles.open("public/about/index.html", mode="r") as f:
+        data = await f.read()
+    return data
