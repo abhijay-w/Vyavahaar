@@ -1,12 +1,12 @@
 var firebaseConfig = {
-    apiKey: "AIzaSyCKve1jasbxxE3c8bDDA2tdqWlhv5AJcsU",
-    authDomain: "ventoutwall.firebaseapp.com",
-    databaseURL: "https://ventoutwall-default-rtdb.firebaseio.com",
-    projectId: "ventoutwall",
-    storageBucket: "ventoutwall.appspot.com",
-    messagingSenderId: "779424564422",
-    appId: "1:779424564422:web:fa668014749d9060aa03c7",
-    measurementId: "G-7628D5XNHM"
+    apiKey: "AIzaSyCdTxcXKZduVB3m_YdHoxKYsXxPPppzWI4",
+    authDomain: "vyavahaar-mentalhealthcare.firebaseapp.com",
+    databaseURL: "https://vyavahaar-mentalhealthcare-default-rtdb.firebaseio.com",
+    projectId: "vyavahaar-mentalhealthcare",
+    storageBucket: "vyavahaar-mentalhealthcare.appspot.com",
+    messagingSenderId: "1088638899783",
+    appId: "1:1088638899783:web:0244785d45dea7132dc362",
+    measurementId: "G-1T7PTWPJCR"
 };
 //   // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
