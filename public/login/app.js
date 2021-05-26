@@ -322,7 +322,7 @@ function checksigninforcoun(){
             console.log("Please login first");
         }
         else{
-            document.location='/counsellor';
+            document.location='/gethelp';
         }
     });
 }
