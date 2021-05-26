@@ -108,7 +108,7 @@ function signUp(){
                 userBio: "User biography",
             }
             firebaseRef.child(uid).set(userData);
-            document.location='/static/login.html';
+            document.location='static/login.html';
               
         }).catch((error) => {
             // Handle Errors here.
