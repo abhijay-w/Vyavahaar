@@ -1,5 +1,6 @@
 // xxxxxxxxxx Working For Sign Up Form xxxxxxxxxx
 // xxxxxxxxxx Full Name Validation xxxxxxxxxx
+
 function checkUserFullName(){
     var userSurname = document.getElementById("userFullName").value;
     var flag = false;
@@ -108,7 +109,7 @@ function signUp(){
                 userBio: "User biography",
             }
             firebaseRef.child(uid).set(userData);
-            document.location='static/login.html';
+            document.location='/';
               
         }).catch((error) => {
             // Handle Errors here.
@@ -151,7 +152,8 @@ function checkUserSIPassword(){
         document.getElementById("userSIPasswordError").style.display = "none";
     }
 }
-// xxxxxxxxxx Check email or password exsist in firebase authentication xxxxxxxxxx    
+// xxxxxxxxxx Check email or password exsist in firebase authentication xxxxxxxxxx   
+var us = 0; 
 function signIn(){
     var userSIEmail = document.getElementById("userSIEmail").value;
     var userSIPassword = document.getElementById("userSIPassword").value;
@@ -166,16 +168,15 @@ function signIn(){
     }else if(checkUserPasswordValid == null){
         return checkUserSIPassword();
     }else{
-        firebase.auth().signInWithEmailAndPassword(userSIEmail, userSIPassword).then((success) => {
-            
+        firebase.auth().signInWithEmailAndPassword(userSIEmail, userSIPassword).then((userCredential) => {
+            // Signed in
+            var user  = userCredential.user;
             document.location='/';
-                
         }).catch((error) => {
-            // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
-            alert(errorMessage)
         });
+        
     }
 }
 // xxxxxxxxxx Working For Profile Page xxxxxxxxxx
@@ -184,6 +185,7 @@ function signIn(){
 firebase.auth().onAuthStateChanged((user)=>{
     if (user) {
     //   User is signed in.
+        
         let user = firebase.auth().currentUser;
         let uid
         if(user != null){
@@ -192,13 +194,13 @@ firebase.auth().onAuthStateChanged((user)=>{
         let firebaseRefKey = firebase.database().ref().child(uid);
         firebaseRefKey.on('value', (dataSnapShot)=>{
             document.getElementById("fullname").innerHTML = dataSnapShot.val().userFullName;
-            document.getElementById("userPfSurname").innerHTML = dataSnapShot.val().userSurname;
+            /*document.getElementById("userPfSurname").innerHTML = dataSnapShot.val().userSurname;
             // userEmail = dataSnapShot.val().userEmail;
             // userPassword = dataSnapShot.val().userPassword;
             document.getElementById("userPfFb").setAttribute('href', dataSnapShot.val().userFb);
             document.getElementById("userPfTw").setAttribute('href', dataSnapShot.val().userTw);
             document.getElementById("userPfGp").setAttribute('href', dataSnapShot.val().userGp);
-            document.getElementById("userPfBio").innerHTML = dataSnapShot.val().userBio;
+            document.getElementById("userPfBio").innerHTML = dataSnapShot.val().userBio;*/
         })
     } else {
     //   No user is signed in.
@@ -269,21 +271,18 @@ function saveProfile(){
         });
     }
 }
+
 // xxxxxxxxxx Working For Sign Out xxxxxxxxxx
 function signOut(){
+    
     firebase.auth().signOut().then(function() {
         // Sign-out successful.
-        swal({
-            type: 'successfull',
-            title: 'Signed Out', 
-        }).then((value) => {
-            setTimeout(function(){
-                document.location='/';
-            }, 1000)
-        });
+        us = 0;
+        alert("successfully signed out");
     }).catch(function(error) {
         // An error happened.
         let errorMessage = error.message;
+        alert(errorMessage);
         swal({
             type: 'error',
             title: 'Error',
@@ -292,33 +291,33 @@ function signOut(){
     });
 }
 function checksigninforques(){   
-    firebase.auth().onAuthStateChanged(function(user) {
-        window.user = user; // user is undefined if no user signed in
-        if(user == undefined){
-            alert("Please login first");
-            console.log("Please login first");
+    var user = firebase.auth().currentUser;
+        
+        if(!user){
+            
+            document.location='/questionnaire';
+            
         }
         else{
-            document.location='/questionnaire';
+            alert("Please Login!");
+            console.log("Please login first");
         }
-    });
+   
 }
 function checksigninforphoto(){   
     firebase.auth().onAuthStateChanged(function(user) {
-        window.user = user; // user is undefined if no user signed in
-        if(user == undefined){
-            alert("Please login first");
-            console.log("Please login first");
+        if (!user) {
+            document.location='/photo';// User is signed in.
+        } else {
+          // No user is signed in.
+          alert("Please Login!");
         }
-        else{
-            document.location='/photo';
-        }
-    });
+        });
 }
 function checksigninforcoun(){   
     firebase.auth().onAuthStateChanged(function(user) {
         window.user = user; // user is undefined if no user signed in
-        if(user == undefined){
+        if(user){
             alert("Please login first");
             console.log("Please login first");
         }

@@ -12,7 +12,11 @@ async def getRoot():
     async with aiofiles.open("public/index.html", mode="r") as f:
         data = await f.read()
     return data
-
+@app.get("/login", response_class=HTMLResponse)
+async def getlogin():
+    async with aiofiles.open("public/login/login.html", mode="r") as f:
+        data = await f.read()
+    return data
 @app.get("/photo", response_class=HTMLResponse)
 async def getPhoto():
     async with aiofiles.open("public/photo/index.html", mode="r") as f:
