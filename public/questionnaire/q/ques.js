@@ -24,7 +24,7 @@
       // add this question and its answers to the output
       output.push(
         `<div class="slide">
-              <div class="question"> ${currentQuestion.question} </div>
+              <div class="question"> (${questionNumber + 1} / ${myQuestions.length})<br>${currentQuestion.question} </div>
               <div class="answers"> ${answers.join("")} </div>
             </div>`
       );
@@ -37,9 +37,6 @@
   function showResults() {
     // gather answer containers from our quiz
     const answerContainers = quizContainer.querySelectorAll(".answers");
-
-    // keep track of user's answers
-    let numCorrect = 0;
 
     // for each question...
     myQuestions.forEach((currentQuestion, questionNumber) => {
@@ -86,7 +83,17 @@
   }
 
   function showNextSlide() {
-    showSlide(currentSlide + 1);
+    const opts = slides[currentSlide].childNodes[3].childNodes;
+    console.log(opts)
+    let selected = false;
+    for (let i = 1; i <= 3; i++) {
+      selected |= opts[i].childNodes[1].checked;
+    }
+    if (selected){
+      showSlide(currentSlide + 1);
+    }else{
+      alert("Please choose an option!")
+    }
   }
 
   function showPreviousSlide() {
