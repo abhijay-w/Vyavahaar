@@ -26,6 +26,11 @@
 .sndbtn {
     margin: 5% 3% 5% 0;
     background-color: #A031A3;
+    color: #fff;
+}
+
+.sndbtn :hover {
+    background-color: #ee1df5;
 }
 
 
