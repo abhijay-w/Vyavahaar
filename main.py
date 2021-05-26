@@ -60,13 +60,32 @@ async def postQuestionnaire(
     stressScore = int((sum([ ord(x) - ord('a') for x in [question7, question8, question9, question10, question11, question12, question13]])/7)*5)
     depressionScore = int((sum([ ord(x) - ord('a') for x in [question14, question15, question16, question17, question18, question19, question20]])/7)*5)
 
-    anxietyLabel = "low" if anxietyScore <= 10/3 else "medium" if anxietyScore <= 20/3 else "high"  
-    stressLabel = "low" if stressScore <= 10/3 else "medium" if stressScore <= 20/3 else "high"  
-    depressionLabel = "low" if depressionScore <= 10/3 else "medium" if depressionScore <= 20/3 else "high"  
+    anxietyLabel = "Low" if anxietyScore <= 10/3 else "Medium" if anxietyScore <= 20/3 else "High"  
+    stressLabel = "Low" if stressScore <= 10/3 else "Medium" if stressScore <= 20/3 else "High"  
+    depressionLabel = "Low" if depressionScore <= 10/3 else "Medium" if depressionScore <= 20/3 else "High"  
 
     async with aiofiles.open("public/questionnaire/q/result.html", mode="r") as f:
         data = await f.read()
     return data.replace('<!-- anxiety-score -->', anxietyLabel).replace('<!-- stress-score -->', stressLabel).replace('<!-- depression-score -->', depressionLabel)
+
+
+@app.get("/questionnaire/selfHelpAnxiety", response_class=HTMLResponse)
+async def getanxiety():
+    async with aiofiles.open("public/questionnaire/selfHelp/anxiety.html", mode="r") as f:
+        data = await f.read()
+    return data
+
+@app.get("/questionnaire/selfHelpDepp", response_class=HTMLResponse)
+async def getanxiety():
+    async with aiofiles.open("public/questionnaire/selfHelp/depression.html", mode="r") as f:
+        data = await f.read()
+    return data
+
+@app.get("/questionnaire/selfHelpStress", response_class=HTMLResponse)
+async def getanxiety():
+    async with aiofiles.open("public/questionnaire/selfHelp/stress.html", mode="r") as f:
+        data = await f.read()
+    return data
 
 @app.get("/vent", response_class=HTMLResponse)
 async def getVent():
