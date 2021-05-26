@@ -108,13 +108,13 @@ function signUp(){
                 userBio: "User biography",
             }
             firebaseRef.child(uid).set(userData);
-            window.location.replace("index.html");
+            document.location='/login.html';
               
         }).catch((error) => {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
-            swal(errorMessage)
+            alert(errorMessage)
         });
     }
 }
@@ -174,7 +174,7 @@ function signIn(){
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
-            swal(errorMessage)
+            alert(errorMessage)
         });
     }
 }
@@ -191,7 +191,7 @@ firebase.auth().onAuthStateChanged((user)=>{
         }
         let firebaseRefKey = firebase.database().ref().child(uid);
         firebaseRefKey.on('value', (dataSnapShot)=>{
-            document.getElementById("userPfFullName").innerHTML = dataSnapShot.val().userFullName;
+            document.getElementById("fullname").innerHTML = dataSnapShot.val().userFullName;
             document.getElementById("userPfSurname").innerHTML = dataSnapShot.val().userSurname;
             // userEmail = dataSnapShot.val().userEmail;
             // userPassword = dataSnapShot.val().userPassword;
