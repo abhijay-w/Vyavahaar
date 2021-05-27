@@ -9,32 +9,37 @@ import matplotlib.pyplot as plt
 
 app = FastAPI()
 
-app.mount("/static", StaticFiles(directory="public"), name="static")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 @app.get("/", response_class=HTMLResponse)
 async def getRoot():
-    async with aiofiles.open("public/index.html", mode="r") as f:
+    async with aiofiles.open("templates/index.html", mode="r") as f:
         data = await f.read()
     return data
 
 
 @app.get("/login", response_class=HTMLResponse)
 async def getlogin():
-    async with aiofiles.open("public/login/login.html", mode="r") as f:
+    async with aiofiles.open("templates/login.html", mode="r") as f:
         data = await f.read()
     return data
 
+@app.get("/signup", response_class=HTMLResponse)
+async def getlogin():
+    async with aiofiles.open("templates/sign-up.html", mode="r") as f:
+        data = await f.read()
+    return data
 
 @app.get("/photo", response_class=HTMLResponse)
 async def getPhoto():
-    async with aiofiles.open("public/photo/index.html", mode="r") as f:
+    async with aiofiles.open("templates/capture.html", mode="r") as f:
         data = await f.read()
     return data
     
 @app.get('/detect', response_class=HTMLResponse)
 async def proceed():
-    async with aiofiles.open("public/photo/emotions.html", mode="r") as f:
+    async with aiofiles.open("templates/emotions.html", mode="r") as f:
         data = await f.read()
     return data
 
@@ -138,13 +143,13 @@ async def getabout():
 
 @app.post("/upload")
 def upload_save(image: UploadFile = File(...)):
-    save_file(image, path="public/photo/temp", save_as="temp")
+    save_file(image, path="temp/", save_as="temp")
     return{"text": "File Uploaded Successfully"}
 
 
 @app.post("/predict")
 def emotions():
-    img = plt.imread("public/photo/temp/temp.jpg")
+    img = plt.imread("temp/temp.jpg")
     detector = FER(mtcnn=True)
     key_value = detector.detect_emotions(img)[0]['emotions']
     emo = {}
