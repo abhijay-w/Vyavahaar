@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>About</title>
+    <title>About | Vyavahaar</title>
     <!-- Font awesome -->
     <script src="https://kit.fontawesome.com/6df8c8fe62.js" crossorigin="anonymous"></script>
     <!-- Fonts -->
@@ -74,10 +74,22 @@
                     <div class="card-content">
                         <div class="card-body ">
 
-                            <div class="card-title">Hritik Rajan</div>
+                            <div class="card-title"> Abhijay Wadhwani </div>
                             <div class="card-subtitle">
-                                <p class="text-muted"> <small class="text-muted"> What defines him is his uniqueness in bracketing real world issues and solving these problems with whatever data or tech stack
-                                    required. His obvious taste attraction lies in concepts of Computing Fundamentals, even better with 4 tea spoons of UI designing </small></p>
+                                <p> <small class="text-muted">Everywhere on the Internet, he describes himself as a passionate programmer, 
+                                    Machine Learning Novice, Mathematics enthusiast, book amateur, and inquisitive learner. 
+                                    He believes it encapsulates all his main interests </small> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col-lg-2 col-md-3 col-sm-4 mt-100">
+                    <div class="card-content">
+                        <div class="card-body ">
+
+                            <div class="card-title"> Anugrah Dixit </div>
+                            <div class="card-subtitle">
+                                <p> <small class="text-muted"> He is a passionate programmer who loves problem-solving and implementing solutions to real world. His area of intersts include web development, UI designing and Artificial intelligence.</small>                                    </p>
                             </div>
                         </div>
                     </div>
@@ -97,17 +109,20 @@
                     <div class="card-content">
                         <div class="card-body ">
 
-                            <div class="card-title"> Srijan Srivastava</div>
+                            <div class="card-title">Hritik Rajan</div>
                             <div class="card-subtitle">
-
-                                <p><small class="text-muted"> He is passionate about problem-solving and his skillset includes JAVA, Python, C++. He is always enthusiastic about
-                                    tackling new problems.</small></p>
-
+                                <p class="text-muted"> <small class="text-muted"> What defines him is his uniqueness in bracketing real world issues and solving these problems with whatever data or tech stack
+                                    required. His obvious taste attraction lies in concepts of Computing Fundamentals, even better with 4 tea spoons of UI designing </small></p>
                             </div>
-
                         </div>
                     </div>
                 </div>
+
+
+
+
+            </div>
+            <div class="row" style="justify-content: center">
                 <div class="card col-lg-2 col-md-3 col-sm-4 mt-100">
                     <div class="card-content">
                         <div class="card-body ">
@@ -120,22 +135,6 @@
                     </div>
                 </div>
 
-
-            </div>
-            <div class="row" style="justify-content: center">
-                <div class="card col-lg-2 col-md-3 col-sm-4 mt-100">
-                    <div class="card-content">
-                        <div class="card-body ">
-
-                            <div class="card-title"> Abhijay Wadhwani </div>
-                            <div class="card-subtitle">
-                                <p> <small class="text-muted">Everywhere on the Internet, he describes himself as a passionate programmer, 
-                                    Machine Learning Novice, Mathematics enthusiast, book amateur, and inquisitive learner. 
-                                    He believes it encapsulates all his main interests </small> </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="card col-lg-2 col-md-3 col-sm-4 mt-100">
                     <div class="card-content">
                         <div class="card-body ">
@@ -151,13 +150,18 @@
                     <div class="card-content">
                         <div class="card-body ">
 
-                            <div class="card-title"> Anugrah Dixit </div>
+                            <div class="card-title"> Srijan Srivastava</div>
                             <div class="card-subtitle">
-                                <p> <small class="text-muted"> He is a passionate programmer who loves problem-solving and implementing solutions to real world. His area of intersts include web development, UI designing and Artificial intelligence.</small>                                    </p>
+
+                                <p><small class="text-muted"> He is passionate about problem-solving and his skillset includes JAVA, Python, C++. He is always enthusiastic about
+                                    tackling new problems.</small></p>
+
                             </div>
+
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -172,18 +176,15 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <input type="text" name="txtEmail" class="form-control" placeholder="Your Email *" value="" />
+                    <input type="email" id="txtemail" name="txtEmail" class="form-control" placeholder="Your Email *" value="" />
                 </div>
-
-
-
                 <div class="form-group">
-                    <textarea name="txtMsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
+                    <textarea name="txtMsg" id="message" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
                 </div>
 
             </div>
             <div class="col-md-1">
-                <button class="btn  sndbtn">send</button>
+                <button class="btn sndbtn" onclick="submitMsg()">send</button>
             </div>
 
 
@@ -199,6 +200,43 @@
 
     </footer>
 
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyCdTxcXKZduVB3m_YdHoxKYsXxPPppzWI4",
+            authDomain: "vyavahaar-mentalhealthcare.firebaseapp.com",
+            databaseURL: "https://vyavahaar-mentalhealthcare-default-rtdb.firebaseio.com",
+            projectId: "vyavahaar-mentalhealthcare",
+            storageBucket: "vyavahaar-mentalhealthcare.appspot.com",
+            messagingSenderId: "1088638899783",
+            appId: "1:1088638899783:web:0244785d45dea7132dc362",
+            measurementId: "G-1T7PTWPJCR"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var refKey = firebase.database().ref("contactmsg");
+
+        function submitMsg() {
+            var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+            var email = document.getElementById("txtemail");
+
+            var msg = document.getElementById("message");
+
+            if (email.value.match(mailformat)) {
+                refKey.push().set({
+                    email: email.value,
+                    message: msg.value
+                });
+                alert("message sent")
+            } else {
+                alert("invalid email");
+            }
+            email.value = "";
+            msg.value = "";
+
+        }
+    </script>
 
 </body>
 
