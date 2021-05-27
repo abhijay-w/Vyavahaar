@@ -1,11 +1,16 @@
-from fastapi import FastAPI, Form
+from fastapi import FastAPI, Form, File, UploadFile
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 import aiofiles
+import shutil
+import os
+from fer import FER
+import matplotlib.pyplot as plt
 
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="public"), name="static")
+
 
 @app.get("/", response_class=HTMLResponse)
 async def getRoot():
@@ -13,9 +18,23 @@ async def getRoot():
         data = await f.read()
     return data
 
+
+@app.get("/login", response_class=HTMLResponse)
+async def getlogin():
+    async with aiofiles.open("public/login/login.html", mode="r") as f:
+        data = await f.read()
+    return data
+
+
 @app.get("/photo", response_class=HTMLResponse)
 async def getPhoto():
     async with aiofiles.open("public/photo/index.html", mode="r") as f:
+        data = await f.read()
+    return data
+    
+@app.get('/detect', response_class=HTMLResponse)
+async def proceed():
+    async with aiofiles.open("public/photo/emotions.html", mode="r") as f:
         data = await f.read()
     return data
 
@@ -31,6 +50,7 @@ async def getQuestionnaire():
     async with aiofiles.open("public/questionnaire/q/index.html", mode="r") as f:
         data = await f.read()
     return data
+
 
 @app.post("/questionnaire/q", response_class=HTMLResponse)
 async def postQuestionnaire(
@@ -56,13 +76,19 @@ async def postQuestionnaire(
     question19: str = Form(...),
     question20: str = Form(...),
 ):
-    anxietyScore = int((sum([ ord(x) - ord('a') for x in [question0, question1, question2, question3, question4, question5, question6]])/7)*5)
-    stressScore = int((sum([ ord(x) - ord('a') for x in [question7, question8, question9, question10, question11, question12, question13]])/7)*5)
-    depressionScore = int((sum([ ord(x) - ord('a') for x in [question14, question15, question16, question17, question18, question19, question20]])/7)*5)
+    anxietyScore = int((sum([ord(x) - ord('a') for x in [question0, question1,
+                       question2, question3, question4, question5, question6]])/7)*5)
+    stressScore = int((sum([ord(x) - ord('a') for x in [question7, question8,
+                      question9, question10, question11, question12, question13]])/7)*5)
+    depressionScore = int((sum([ord(x) - ord('a') for x in [question14, question15,
+                          question16, question17, question18, question19, question20]])/7)*5)
 
-    anxietyLabel = "Low" if anxietyScore <= 10/3 else "Medium" if anxietyScore <= 20/3 else "High"  
-    stressLabel = "Low" if stressScore <= 10/3 else "Medium" if stressScore <= 20/3 else "High"  
-    depressionLabel = "Low" if depressionScore <= 10/3 else "Medium" if depressionScore <= 20/3 else "High"  
+    anxietyLabel = "Low" if anxietyScore <= 10 / \
+        3 else "Medium" if anxietyScore <= 20/3 else "High"
+    stressLabel = "Low" if stressScore <= 10 / \
+        3 else "Medium" if stressScore <= 20/3 else "High"
+    depressionLabel = "Low" if depressionScore <= 10 / \
+        3 else "Medium" if depressionScore <= 20/3 else "High"
 
     async with aiofiles.open("public/questionnaire/q/result.html", mode="r") as f:
         data = await f.read()
@@ -75,17 +101,20 @@ async def getanxiety():
         data = await f.read()
     return data
 
+
 @app.get("/questionnaire/selfHelpDepp", response_class=HTMLResponse)
-async def getanxiety():
+async def getdepression():
     async with aiofiles.open("public/questionnaire/selfHelp/depression.html", mode="r") as f:
         data = await f.read()
     return data
 
+
 @app.get("/questionnaire/selfHelpStress", response_class=HTMLResponse)
-async def getanxiety():
+async def getstress():
     async with aiofiles.open("public/questionnaire/selfHelp/stress.html", mode="r") as f:
         data = await f.read()
     return data
+
 
 @app.get("/vent", response_class=HTMLResponse)
 async def getVent():
@@ -93,14 +122,42 @@ async def getVent():
         data = await f.read()
     return data
 
+
 @app.get("/gethelp", response_class=HTMLResponse)
 async def gethelp():
     async with aiofiles.open("public\counsellor\index.html", mode="r") as f:
         data = await f.read()
     return data
 
+
 @app.get("/about", response_class=HTMLResponse)
-async def gethelp():
+async def getabout():
     async with aiofiles.open("public/about/index.html", mode="r") as f:
         data = await f.read()
     return data
+
+@app.post("/upload")
+def upload_save(image: UploadFile = File(...)):
+    save_file(image, path="public/photo/temp", save_as="temp")
+    return{"text": "File Uploaded Successfully"}
+
+
+@app.post("/predict")
+def emotions():
+    img = plt.imread("public/photo/temp/temp.jpg")
+    detector = FER(mtcnn=True)
+    key_value = detector.detect_emotions(img)[0]['emotions']
+    emo = {}
+    sorted_keys = sorted(key_value, key=key_value.get, reverse=True)
+    for w in sorted_keys:
+        emo[w] = key_value[w]
+    emotions = list(emo.keys())[0:3]
+    return {"emo": emotions}
+
+
+def save_file(uploaded_file, path=".", save_as="default"):
+    extension = os.path.splitext(uploaded_file.filename)[-1]
+    temp_file = os.path.join(path, save_as + extension)
+    with open(temp_file, "wb") as buffer:
+        shutil.copyfileobj(uploaded_file.file, buffer)
+    return temp_file
