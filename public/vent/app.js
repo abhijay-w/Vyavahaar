@@ -90,7 +90,7 @@ function onSubmit(e) {
     var time = getTime();
     postRef.push().set({ des: vale, date: dats, time: time });
     // // document.querySelector('#demo').innerHTML = "";
-
+    swal("Posted", "Hope that helped you", "success");
     document.getElementById("myModal").style.display = "none";
 }
 
