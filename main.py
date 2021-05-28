@@ -127,7 +127,7 @@ async def getstress():
 
 @app.get("/vent", response_class=HTMLResponse)
 async def getVent():
-    async with aiofiles.open("public/vent/index.html", mode="r") as f:
+    async with aiofiles.open("templates/ventoutwall.html", mode="r") as f:
         data = await f.read()
     return data
 
@@ -141,7 +141,7 @@ async def gethelp():
 
 @app.get("/about", response_class=HTMLResponse)
 async def getabout():
-    async with aiofiles.open("public/about/index.html", mode="r") as f:
+    async with aiofiles.open("templates/about.html", mode="r") as f:
         data = await f.read()
     return data
 
