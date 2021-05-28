@@ -92,7 +92,7 @@
     if (selected){
       showSlide(currentSlide + 1);
     }else{
-      alert("Please choose an option!")
+      swal( {text: "Please choose an option!", icon:"warning", button:"Ok",})
     }
   }
 
