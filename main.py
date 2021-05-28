@@ -17,7 +17,11 @@ async def getRoot():
     async with aiofiles.open("templates/index.html", mode="r") as f:
         data = await f.read()
     return data
-
+@app.get("/user", response_class=HTMLResponse)
+async def getUser():
+    async with aiofiles.open("templates/user.html", mode="r") as f:
+        data = await f.read()
+    return data
 
 @app.get("/login", response_class=HTMLResponse)
 async def getlogin():

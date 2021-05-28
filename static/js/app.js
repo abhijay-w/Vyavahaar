@@ -109,7 +109,8 @@ function signUp(){
                 userBio: "User biography",
             }
             firebaseRef.child(uid).set(userData);
-            document.location='/';
+            window.location.replace("../../user");
+            
               
         }).catch((error) => {
             // Handle Errors here.
@@ -168,10 +169,9 @@ function signIn(){
     }else if(checkUserPasswordValid == null){
         return checkUserSIPassword();
     }else{
-        firebase.auth().signInWithEmailAndPassword(userSIEmail, userSIPassword).then((userCredential) => {
-            // Signed in
-            var user  = userCredential.user;
-            document.location='/';
+        firebase.auth().signInWithEmailAndPassword(userSIEmail, userSIPassword).then((success) => {
+
+            window.location.replace("../../user");
         }).catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -277,7 +277,7 @@ function signOut(){
     
     firebase.auth().signOut().then(function() {
         // Sign-out successful.
-        us = 0;
+        window.location.replace("../../");
         alert("successfully signed out");
     }).catch(function(error) {
         // An error happened.
@@ -293,9 +293,9 @@ function signOut(){
 function checksigninforques(){   
     var user = firebase.auth().currentUser;
         
-        if(!user){
+        if(user){
+            window.location.replace("../../questionnaire");
             
-            document.location='/questionnaire';
             
         }
         else{
@@ -306,8 +306,9 @@ function checksigninforques(){
 }
 function checksigninforphoto(){   
     firebase.auth().onAuthStateChanged(function(user) {
-        if (!user) {
-            document.location='/photo';// User is signed in.
+        if (user) {
+            window.location.replace("../../photo");
+            // User is signed in.
         } else {
           // No user is signed in.
           alert("Please Login!");
@@ -318,11 +319,12 @@ function checksigninforcoun(){
     firebase.auth().onAuthStateChanged(function(user) {
         window.user = user; // user is undefined if no user signed in
         if(user){
-            alert("Please login first");
-            console.log("Please login first");
+            document.location='/gethelp';
+            
         }
         else{
-            document.location='/gethelp';
+            alert("Please login first");
+            console.log("Please login first");
         }
     });
 }
