@@ -1,4 +1,4 @@
-# ![image](https://drive.google.com/uc?export=view&id=<16HpbjoiCcyzxfcot3RiLg6qEQ1apUfcw>)
+# ![image](https://drive.google.com/uc?export=view&id=16HpbjoiCcyzxfcot3RiLg6qEQ1apUfcw)
 
 # WebApp
 <table>
