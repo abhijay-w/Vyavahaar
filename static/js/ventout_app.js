@@ -70,14 +70,12 @@ function sendComment(element) {
     var content = element.previousElementSibling.value;
 
     var date = getDate();
-    if (content == "") {
 
-    } else {
-        firebase.database().ref('posts/' + postId + '/comments').push().set({
-            content: content,
-            date: date
-        });
-    }
+    firebase.database().ref('posts/' + postId + '/comments').push().set({
+        content: content,
+        date: date
+    });
+
 
 
 
@@ -92,16 +90,14 @@ function onSubmit(e) {
 
 
     // // console.log(vale);
-    if (vale == "" || vale == " ") {
-        console.log("")
-    } else {
-        var dats = getDate();
-        var time = getTime();
-        postRef.push().set({ des: vale, date: dats, time: time });
-        // // document.querySelector('#demo').innerHTML = "";
-        swal("Posted", "Hope that helped you", "success");
-        document.getElementById("myModal").style.display = "none";
-    }
+
+    var dats = getDate();
+    var time = getTime();
+    postRef.push().set({ des: vale, date: dats, time: time });
+    // // document.querySelector('#demo').innerHTML = "";
+    swal("Posted", "Hope that helped you", "success");
+    document.getElementById("myModal").style.display = "none";
+
 
 }
 
