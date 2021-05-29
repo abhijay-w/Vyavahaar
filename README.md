@@ -1,4 +1,4 @@
-# ![image](https://drive.google.com/uc?export=view&id=138nk6b--V1jwgADhBTHdJzJWGhOB5PdG)
+# ![image](https://drive.google.com/uc?export=view&id=1nZjIq1AbpMKXBDop7CEkvJNa6Tr2awQy)
 
 # WebApp
 <table>
@@ -15,15 +15,22 @@ A user will be classified as one of the following categories:
 </tr>
 </table>
 
-# Site
+# Installation Guide:
+1. python3 -m venv venv . Then activate your virtual environment(OS specific). (If you don't have venv, install it) [optional]
+2. python3 -m pip install -r requirements.txt
+3. uvicorn main:app --reload
+
+# Site Screenshots
 ### Landing page 
 It will contain an overview of all the funcitonalities.
 ![image](https://drive.google.com/uc?export=view&id=1dtMganqG0e2JRMB4WUP8Unj0PSjPASyC)
 ### Login page
 ![image](https://drive.google.com/uc?export=view&id=1MSRqvYl5VXjgXwJsc6m74yUzWVlzdf2o)
+### Questionnaire
+![image](https://drive.google.com/uc?export=view&id=1te15wqQIzsb93yo_8ZfZ4ZulxzqJbvtc)
 ### Vent out
 This will show our community interaction.
-![image](https://drive.google.com/uc?export=view&id=1tKfHlk3FA5d1Cjw7YJ8hkvMAMZqc1Uan)
+![image](https://drive.google.com/uc?export=view&id=1RBUk4eawrfYKm8_wbijvxoOQPYBhUCZt)
 # Built With
 - [FastAPI](https://fastapi.tiangolo.com/) - _FastAPI_ is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints.
 - [jQuery - Ajax](http://www.w3schools.com/jquery/jquery_ref_ajax.asp) - _jQuery_ simplifies HTML document traversing, event handling, animating, and Ajax interactions for rapid web development.
@@ -31,7 +38,3 @@ This will show our community interaction.
 - [OpenCV](https://opencv.org/) - _OpenCV_ provides a real-time optimized Computer Vision library, tools, and hardware.
 - [Uvicorn](https://www.uvicorn.org/) - _Uvicorn_ is a lightning-fast ASGI server implementation, using [uvloop](https://github.com/MagicStack/uvloop) and [httptools](https://github.com/MagicStack/httptools).
 - [Bootstrap](http://getbootstrap.com/) - Extensive list of components and  Bundled Javascript plugins.
-# Installation Guide:
-1. python3 -m venv venv . Then activate your virtual environment(OS specific). (If you don't have venv, install it) [optional]
-2. python3 -m pip install -r requirements.txt
-3. uvicorn main:app --reload
