@@ -49,14 +49,14 @@ async def proceed():
 
 @app.get("/questionnaire", response_class=HTMLResponse)
 async def getQuestionnaireHome():
-    async with aiofiles.open("public/questionnaire/index.html", mode="r") as f:
+    async with aiofiles.open("templates/ques_index.html", mode="r") as f:
         data = await f.read()
     return data
 
 
 @app.get("/questionnaire/q", response_class=HTMLResponse)
 async def getQuestionnaire():
-    async with aiofiles.open("public/questionnaire/q/index.html", mode="r") as f:
+    async with aiofiles.open("templates/q_index.html", mode="r") as f:
         data = await f.read()
     return data
 
@@ -99,28 +99,28 @@ async def postQuestionnaire(
     depressionLabel = "Low" if depressionScore <= 10 / \
         3 else "Medium" if depressionScore <= 20/3 else "High"
 
-    async with aiofiles.open("public/questionnaire/q/result.html", mode="r") as f:
+    async with aiofiles.open("templates/result.html", mode="r") as f:
         data = await f.read()
     return data.replace('<!-- anxiety-score -->', anxietyLabel).replace('<!-- stress-score -->', stressLabel).replace('<!-- depression-score -->', depressionLabel)
 
 
 @app.get("/questionnaire/selfHelpAnxiety", response_class=HTMLResponse)
 async def getanxiety():
-    async with aiofiles.open("public/questionnaire/selfHelp/anxiety.html", mode="r") as f:
+    async with aiofiles.open("templates/anxiety.html", mode="r") as f:
         data = await f.read()
     return data
 
 
 @app.get("/questionnaire/selfHelpDepp", response_class=HTMLResponse)
 async def getdepression():
-    async with aiofiles.open("public/questionnaire/selfHelp/depression.html", mode="r") as f:
+    async with aiofiles.open("templates/depression.html", mode="r") as f:
         data = await f.read()
     return data
 
 
 @app.get("/questionnaire/selfHelpStress", response_class=HTMLResponse)
 async def getstress():
-    async with aiofiles.open("public/questionnaire/selfHelp/stress.html", mode="r") as f:
+    async with aiofiles.open("templates/stress.html", mode="r") as f:
         data = await f.read()
     return data
 
@@ -134,7 +134,7 @@ async def getVent():
 
 @app.get("/gethelp", response_class=HTMLResponse)
 async def gethelp():
-    async with aiofiles.open("public\counsellor\index.html", mode="r") as f:
+    async with aiofiles.open("templates/counsel_index.html", mode="r") as f:
         data = await f.read()
     return data
 
