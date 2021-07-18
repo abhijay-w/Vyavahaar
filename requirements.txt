@@ -1,7 +1,7 @@
 click==7.1.2
 h11==0.12.0
 httptools==0.1.1
-pydantic==1.8.1
+pydantic==1.8.2
 python-dotenv==0.15.0
 PyYAML==5.4.1
 starlette==0.13.6
@@ -9,9 +9,9 @@ typing-extensions==3.7.4.3
 uvicorn==0.13.4
 uvloop==0.15.2
 watchgod==0.7
-websockets==8.1
+websockets==9.1
 requests==2.22.0
-fastapi==0.65.1
+fastapi==0.65.2
 fer==20.1.1
 matplotlib==3.4.2
 passlib==1.7.1
