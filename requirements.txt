@@ -16,5 +16,5 @@ fer==20.1.1
 matplotlib==3.4.2
 passlib==1.7.1
 aiofiles==0.7.0 
-pipenv==2018.11.26
+pipenv==2022.1.8
 pycparser==2.19
